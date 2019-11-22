@@ -41,6 +41,9 @@ Page({
     })
   },
   onSubmit() {
+    
+    var that=this;
+    console.log(that.globalData.openid)
     const {
       getFieldsValue,
       getFieldValue,
@@ -50,7 +53,6 @@ Page({
 
     console.log('Wux Form Submit \n', value)
 
-    var that=this;
     wx.request({
       url: 'http://localhost:8888/order/addSave',
       method: 'POST',

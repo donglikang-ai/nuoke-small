@@ -30,6 +30,8 @@ Page({
   //事件处理函数
   faultForm: function() {
 
+
+    console.log(this.data.openid);
     console.log(this.data.ordersNum);
     if (this.data.ordersNum==1){
       //存在未处理完成订单时，无法新建订单
@@ -65,22 +67,23 @@ Page({
   },
   onLoad: function() {
     this.getBaseData();
+    app.getopenid(this.cb)
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  cb: function (res) {
+    let that = this
+    console.log("write cb res", res)
+    that.setData({
+      openid: res
     })
   },
+
   getBaseData:function(){
     var that=this;
     wx.request({
       url: "http://localhost:8888/small/info",
       method: 'POST',
       data: {
-        openid:'13'
+        openid: app.globalData.openid
       },
       success: function (res) { //请求成功
         console.log(res);//在调试器里打印网络请求到的json数据
