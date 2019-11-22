@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">历史保修</view>
+    <view class="page__desc">历史久远的已经无从查看</view>
+  </view>
+  <view class="page__bd">
+
+    <view wx:for="{{orders}}" wx:key="id">
+      <view class="sub-title"> </view>
+      <wux-wing-blank size="default">
+        <wux-card title="状态：已完成" extra="{{item.closeDate}}">
+          <view slot="body">
+            故障设备：{{item.terminalName}}
+            故障类型：{{item.faultName}}
+          </view>
+          <view slot="footer">感谢您的使用</view>
+        </wux-card>
+      </wux-wing-blank>
+
+    </view>
+  </view>
+</view>

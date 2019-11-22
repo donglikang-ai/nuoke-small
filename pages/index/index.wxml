@@ -1,0 +1,63 @@
+<view class="page">
+
+  <wux-notice-bar loop>
+    {{notice}}
+  </wux-notice-bar>
+  <wux-wing-blank size="default">
+    <!-- <view class="swiper-container">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{duration}}" current="{{swiperCurrent}}" class="swiper">
+        <block wx:for="{{swiperList}}" wx:key="key">
+          <swiper-item>
+            <image src="{{item.url}}" class="img" /> </swiper-item>
+        </block>
+      </swiper>
+    </view> -->
+
+    <view class='carousel'>
+      <swiper class='carousel_swiper' indicator-dots="true" indicator-color="#f4f4f4" indicator-active-color="#4eb8b8" autoplay="true" interval='2000' circular='true'>
+        <block wx:for="{{swiperList}}" wx:key="key">
+          <swiper-item>
+            <image class="carouselImg" src='{{item.url}}' mode='aspectFill'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </wux-wing-blank>
+
+  <view class="page__bd">
+
+    <view class="sub-title">基础服务</view>
+    <wux-wing-blank size="default">
+      <wux-grids>
+        <wux-grid bind:click="faultForm">
+          <wux-icon type="ios-checkbox-outline" color="#009ad6" />
+          <view>故障报修</view>
+        </wux-grid>
+        <wux-grid bind:click="faultHistory">
+          <wux-icon type="md-clipboard" color="#009ad6" />
+          <view>历史报修</view>
+        </wux-grid>
+        <wux-grid bind:click="checkFault">
+          <wux-icon type="ios-information-circle-outline" color="#009ad6" />
+          <view>自检手册</view>
+        </wux-grid>
+        <wux-grid bind:click="aboutUs">
+          <wux-icon type="md-book" color="#009ad6" />
+          <view>关于我们</view>
+        </wux-grid>
+      </wux-grids>
+    </wux-wing-blank>
+    <view class="sub-title">处理中订单</view>
+    <view wx:for="{{orders}}" wx:key="id">
+      <wux-wing-blank size="default">
+        <wux-card title="状态：未完成" extra="{{orderTime}}">
+          <view slot="body">
+             故障设备：{{item.terminalName}}
+            故障类型：{{item.faultName}}
+          </view>
+          <view slot="footer">处理完成前无法新建报障订单</view>
+        </wux-card>
+      </wux-wing-blank>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,3 @@
+<!--pages/authorize/index.wxml-->
+<text>pages/authorize/index.wxml</text>
+<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">开始使用</button>

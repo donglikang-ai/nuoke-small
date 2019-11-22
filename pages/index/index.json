@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "诺科售后",
+  "navigationBarBackgroundColor": "#426ab3",
+  "usingComponents": {
+    "wux-icon": "../../dist/icon/index",
+    "wux-grids": "../../dist/grids/index",
+    "wux-grid": "../../dist/grid/index",
+    "wux-notice-bar": "../../dist/notice-bar/index",
+    "wux-card": "../../dist/card/index",
+    "wux-wing-blank": "../../dist/wing-blank/index",
+    "wux-white-space": "../../dist/white-space/index",
+    "wux-toast": "../../dist/toast/index"
+  }
+}
