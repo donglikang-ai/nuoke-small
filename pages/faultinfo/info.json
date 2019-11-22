@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "诺科售后",
+  "navigationBarBackgroundColor": "#426ab3",
+  "usingComponents": {
+    "wux-steps": "../../dist/steps/index",
+    "wux-step": "../../dist/step/index"
+  }
+}

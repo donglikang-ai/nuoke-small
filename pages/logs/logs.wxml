@@ -8,7 +8,7 @@
     <view wx:for="{{orders}}" wx:key="id">
       <view class="sub-title"> </view>
       <wux-wing-blank size="default">
-        <wux-card title="状态：已完成" extra="{{item.closeDate}}">
+        <wux-card title="状态：已完成" extra="{{item.closeDate}}" actions="{{actions}}" bind:action="faultInfo">
           <view slot="body">
             故障设备：{{item.terminalName}}
             故障类型：{{item.faultName}}

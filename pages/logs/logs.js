@@ -3,13 +3,23 @@ const app = getApp()
 
 Page({
   data: {
-    orders:[]
+    orders:[],
+    actions:[
+      {type:'default',
+      text:'详细内容'}
+    ]
   },
   /**
  * 生命周期函数--监听页面加载
  */
   onLoad: function (options) {
     this.getOrders();
+  },
+  faultInfo(e){
+    console.log(e)
+    wx.navigateTo({
+      url: '../faultinfo/info'
+    })
   },
   getOrders: function () {
     var that = this;
