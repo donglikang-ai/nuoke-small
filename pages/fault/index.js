@@ -43,7 +43,6 @@ Page({
   onSubmit() {
     
     var that=this;
-    console.log(that.globalData.openid)
     const {
       getFieldsValue,
       getFieldValue,
