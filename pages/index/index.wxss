@@ -15,11 +15,3 @@
   width: 100%;
   height: inherit;
 }
-
-.header_view_hide{
-  display: none;
-}
-
-.header_view_show{
-  display: block;
-}

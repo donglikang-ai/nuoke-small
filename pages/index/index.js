@@ -10,7 +10,6 @@ Page({
     interval: 3000,
     duration: 800,
     circular: true,
-    showOrder:false,
     swiperList: [{
       id: 0,
       type: 'image',

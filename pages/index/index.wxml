@@ -4,7 +4,6 @@
     {{notice}}
   </wux-notice-bar>
   <wux-wing-blank size="default">
-
     <view class='carousel'>
       <swiper class='carousel_swiper' indicator-dots="true" indicator-color="#f4f4f4" indicator-active-color="#4eb8b8" autoplay="true" interval='2000' circular='true'>
         <block wx:for="{{swiperList}}" wx:key="key">
@@ -40,20 +39,13 @@
       </wux-grids>
     </wux-wing-blank>
     <view class="sub-title">处理中订单</view>
-    <view class="{{showOrder?'.view_hide':'.view_show'}}">
-      <wux-wing-blank size="default">
-        <wux-button block type="positive">授权查看</wux-button>
-      </wux-wing-blank>
-    </view>
-    <view class="{{showOrder?'.view_show':'.view_hide'}}" wx:for="{{orders}}" wx:key="id">
-      <wux-wing-blank size="default">
-        <wux-card title="状态：未完成" extra="{{orderTime}}">
-          <view slot="body">
-            故障设备：{{item.terminalName}} 故障类型：{{item.faultName}}
-          </view>
-          <view slot="footer">处理完成前无法新建报障订单</view>
-        </wux-card>
-      </wux-wing-blank>
-    </view>
+    <wux-wing-blank size="default">
+      <wux-card title="状态：未完成" extra="{{orderTime}}">
+        <view slot="body">
+          故障设备：{{item.terminalName}} 故障类型：{{item.faultName}}
+        </view>
+        <view slot="footer">处理完成前无法新建报障订单</view>
+      </wux-card>
+    </wux-wing-blank>
   </view>
 </view>
