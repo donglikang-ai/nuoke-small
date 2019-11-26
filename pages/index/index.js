@@ -10,6 +10,7 @@ Page({
     interval: 3000,
     duration: 800,
     circular: true,
+    showOrder:false,
     swiperList: [{
       id: 0,
       type: 'image',
@@ -66,24 +67,22 @@ Page({
     })
   },
   onLoad: function() {
-    this.getBaseData();
-    app.getopenid(this.cb)
+    var that = this;
+    if (!wx.getStorageSync('userOpenid') || wx.getStorageSync('userOpenid')) {
+      app.getOpenid().then((resArg) => {
+        that.getBaseData();
+      })
+    } else {
+      that.getBaseData();
+    }
   },
-  cb: function (res) {
-    let that = this
-    console.log("write cb res", res)
-    that.setData({
-      openid: res
-    })
-  },
-
   getBaseData:function(){
     var that=this;
     wx.request({
       url: "http://localhost:8888/small/info",
       method: 'POST',
       data: {
-        openid: app.globalData.openid
+        openid: wx.getStorageSync('userOpenid')
       },
       success: function (res) { //请求成功
         console.log(res);//在调试器里打印网络请求到的json数据
