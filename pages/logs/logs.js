@@ -13,21 +13,28 @@ Page({
  * 生命周期函数--监听页面加载
  */
   onLoad: function (options) {
-    this.getOrders();
+    var that = this;
+    if (!wx.getStorageSync('userOpenid') || wx.getStorageSync('userOpenid')) {
+      app.getOpenid().then((resArg) => {
+        that.getOrders();
+      })
+    } else {
+      that.getOrders();
+    }
   },
   faultInfo(e){
-    console.log(e)
+   
     wx.navigateTo({
-      url: '../faultinfo/info'
+      url: '../faultinfo/info?id=' + e.currentTarget.dataset.id
     })
   },
   getOrders: function () {
     var that = this;
     wx.request({
-      url: "http://localhost:8888/small/orders",
+      url: "http://192.168.1.153:8888/small/orders",
       method: 'POST',
       data: {
-        openid: '13'
+        openid: wx.getStorageSync('userOpenid')
       },
       success: function (res) { //请求成功
         console.log(res);//在调试器里打印网络请求到的json数据

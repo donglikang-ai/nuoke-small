@@ -24,15 +24,17 @@ Page({
       url: 'https://p3.pstatp.com/large/31fa0003ed7228adf421'
     }],
     orderTime: '2019-11-12 18:38:00',
-    orderInfo: '故障设备：BJ001232\r\n故障类型：不制热'
+    orderInfo: '故障设备：BJ001232\r\n故障类型：不制热',
+    actions: [
+      {
+        type: 'default',
+        text: '详细内容'
+      }
+    ]
 
   },
   //事件处理函数
   faultForm: function() {
-
-
-    console.log(this.data.openid);
-    console.log(this.data.ordersNum);
     if (this.data.ordersNum==1){
       //存在未处理完成订单时，无法新建订单
       wx.showToast({
@@ -78,7 +80,7 @@ Page({
   getBaseData:function(){
     var that=this;
     wx.request({
-      url: "http://localhost:8888/small/info",
+      url: "http://192.168.1.153:8888/small/info",
       method: 'POST',
       data: {
         openid: wx.getStorageSync('userOpenid')
@@ -94,6 +96,12 @@ Page({
       },
       fail: function (res) { // 请求失败
       }
+    })
+  },
+  faultInfo(e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '../faultinfo/info?id=' + e.currentTarget.dataset.id
     })
   }
 })

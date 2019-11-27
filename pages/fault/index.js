@@ -11,10 +11,18 @@ Page({
     displayValue1: '请选择',
     displayValue2: '请选择',
     terminals: [],
-    faults: []
+    faults: [],
+    userOpenid:''
   },
   onLoad: function () {
-    this.getBaseData();
+    var that = this;
+    if (!wx.getStorageSync('userOpenid') || wx.getStorageSync('userOpenid')) {
+      app.getOpenid().then((resArg) => {
+        that.getBaseData();
+      })
+    } else {
+      that.getBaseData();
+    }
   },
   setValue(values, key) {
     this.setData({
@@ -43,6 +51,7 @@ Page({
   onSubmit() {
     
     var that=this;
+    
     const {
       getFieldsValue,
       getFieldValue,
@@ -53,7 +62,7 @@ Page({
     console.log('Wux Form Submit \n', value)
 
     wx.request({
-      url: 'http://localhost:8888/order/addSave',
+      url: 'http://192.168.1.153:8888/order/addSave',
       method: 'POST',
       data: value,
       header: {
@@ -79,13 +88,14 @@ Page({
   getBaseData: function () {
     var that = this;
     wx.request({
-      url: "http://localhost:8888/small/faults",
+      url: "http://192.168.1.153:8888/small/faults",
       method:'GET',
       success: function (res) { //请求成功
         console.log(res);//在调试器里打印网络请求到的json数据
         that.setData({
           terminals: res.data.data.terminals,
-          faults: res.data.data.faults
+          faults: res.data.data.faults,
+          userOpenid: wx.getStorageSync('userOpenid')
         })
       },
       fail: function (res) { // 请求失败

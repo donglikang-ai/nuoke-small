@@ -1,6 +1,5 @@
-
-<wux-popup closable visible="{{ visible1 }}" title="操作成功" content="提交成功，我们将尽快工作人员跟进处理" >
-    <view slot="footer" class="popup__button" bindtap="btnClose">OK</view>
+<wux-popup closable visible="{{ visible1 }}" title="操作成功" content="提交成功，我们将尽快工作人员跟进处理">
+  <view slot="footer" class="popup__button" bindtap="btnClose">OK</view>
 </wux-popup>
 
 <view class="page">
@@ -12,6 +11,12 @@
     <wux-form id="wux-form" bind:change="onChange">
 
       <wux-cell-group>
+
+        <wux-cell class="hidden" hover-class="none">
+          <wux-field class="hidden" name="openid" initialValue="{{userOpenid}}">
+            <wux-input label="报修人" />
+          </wux-field>
+        </wux-cell>
 
         <wux-field name="terminalName" initialValue="">
           <wux-popup-select value="{{ value1 }}" options="{{ terminals }}" data-index="1" bind:confirm="onConfirm" bind:valueChange="onValueChange">

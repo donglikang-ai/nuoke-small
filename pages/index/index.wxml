@@ -39,13 +39,17 @@
       </wux-grids>
     </wux-wing-blank>
     <view class="sub-title">处理中订单</view>
-    <wux-wing-blank size="default">
-      <wux-card title="状态：未完成" extra="{{orderTime}}">
-        <view slot="body">
-          故障设备：{{item.terminalName}} 故障类型：{{item.faultName}}
-        </view>
-        <view slot="footer">处理完成前无法新建报障订单</view>
-      </wux-card>
-    </wux-wing-blank>
+
+    <view wx:for="{{orders}}" wx:key="id">
+      <wux-wing-blank size="default">
+        <wux-card title="状态：未完成" extra="{{item.createDate}}"  data-id="{{item.id}}"  actions="{{actions}}" bind:action="faultInfo">
+          <view slot="body">
+            故障设备：{{item.terminalName}} 故障类型：{{item.faultName}}
+          </view>
+          <view slot="footer">处理完成前无法新建报障订单</view>
+        </wux-card>
+      </wux-wing-blank>
+    </view>
+
   </view>
 </view>

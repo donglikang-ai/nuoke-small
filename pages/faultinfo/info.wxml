@@ -8,8 +8,8 @@
     <view class="sub-title">服务已完成，欢迎使用</view>
         <wux-steps direction="vertical">
             <wux-step status="finish" title="完成报修({{createDate}})" content="报修设备:{{terminalName}}\n故障类型:{{faultName}}\n故障描述:{{faultInfo}}"></wux-step>
-            <wux-step status="finish" title="安排服务({{doDate}})" content="服务人员:{{repairmanName}}\n服务电话:{{repairmanTel}}"></wux-step>
-            <wux-step status="process" title="订单完成({{closeDate}})" content="报修处理已完成"></wux-step>
+            <wux-step status="{{finishStatus==2?finish:process}}" title="安排服务({{doDate}})" content="服务人员:{{repairmanName}}\n服务电话:{{repairmanTel}}"></wux-step>
+            <wux-step status="{{finishStatus==2?process:wait}}" title="订单完成({{closeDate}})" content="报修处理已完成"></wux-step>
         </wux-steps>
   </view>
 </view>
