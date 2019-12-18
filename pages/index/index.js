@@ -1,5 +1,8 @@
 //index.js
 //获取应用实例
+import {
+  $wuxToast
+} from '../../dist/index'
 const app = getApp()
 
 Page({
@@ -25,23 +28,26 @@ Page({
     }],
     orderTime: '2019-11-12 18:38:00',
     orderInfo: '故障设备：BJ001232\r\n故障类型：不制热',
-    actions: [
-      {
-        type: 'default',
-        text: '详细内容'
-      }
-    ]
+    actions: [{
+      type: 'default',
+      text: '详细内容'
+    }]
 
   },
   //事件处理函数
   faultForm: function() {
-    if (this.data.ordersNum==1){
+    if (this.data.ordersNum == 1) {
       //存在未处理完成订单时，无法新建订单
-      wx.showToast({
-        title: '存在未处理订单，无法新建订单',
-        duration: 2000
+
+      $wuxToast().show({
+        type: 'forbidden',
+        duration: 1500,
+        color: '#fff',
+        text: '存在未处理订单',
+        success: () => console.log('存在未处理订单')
       })
-    }else{
+
+    } else {
       wx.navigateTo({
         url: '../fault/index'
       })
@@ -54,17 +60,23 @@ Page({
     })
   },
   checkFault: function() {
-    wx.showToast({
-      title: '功能开发中',
+    $wuxToast().show({
+      type: 'default',
+      duration: 1500,
+      color: '#fff',
       icon: 'md-build',
-      duration: 2000
+      text: '功能开发中',
+      success: () => console.log('自定义图标')
     })
   },
   aboutUs: function() {
-    wx.showToast({
-      title: '功能开发中',
+    $wuxToast().show({
+      type: 'default',
+      duration: 1500,
+      color: '#fff',
       icon: 'md-build',
-      duration: 2000
+      text: '功能开发中',
+      success: () => console.log('自定义图标')
     })
   },
   onLoad: function() {
@@ -77,24 +89,24 @@ Page({
       that.getBaseData();
     }
   },
-  getBaseData:function(){
-    var that=this;
+  getBaseData: function() {
+    var that = this;
     wx.request({
-      url: "http://192.168.1.153:8888/small/info",
+      url: "http://192.168.1.107:8888/small/info",
       method: 'POST',
       data: {
         openid: wx.getStorageSync('userOpenid')
       },
-      success: function (res) { //请求成功
-        console.log(res);//在调试器里打印网络请求到的json数据
+      success: function(res) { //请求成功
+        console.log(res); //在调试器里打印网络请求到的json数据
         console.log(res.data.data.orders.length);
         that.setData({
-          notice:res.data.data.notice,
-          ordersNum: res.data.data.orders.length==0?0:1,
+          notice: res.data.data.notice,
+          ordersNum: res.data.data.orders.length == 0 ? 0 : 1,
           orders: res.data.data.orders
         })
       },
-      fail: function (res) { // 请求失败
+      fail: function(res) { // 请求失败
       }
     })
   },

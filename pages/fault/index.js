@@ -12,9 +12,9 @@ Page({
     displayValue2: '请选择',
     terminals: [],
     faults: [],
-    userOpenid:''
+    userOpenid: ''
   },
-  onLoad: function () {
+  onLoad: function() {
     var that = this;
     if (!wx.getStorageSync('userOpenid') || wx.getStorageSync('userOpenid')) {
       app.getOpenid().then((resArg) => {
@@ -49,9 +49,9 @@ Page({
     })
   },
   onSubmit() {
-    
-    var that=this;
-    
+
+    var that = this;
+
     const {
       getFieldsValue,
       getFieldValue,
@@ -62,20 +62,35 @@ Page({
     console.log('Wux Form Submit \n', value)
 
     wx.request({
-      url: 'http://192.168.1.153:8888/order/addSave',
+      url: 'http://192.168.1.107:8888/order/addSave',
       method: 'POST',
       data: value,
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        that.templateNotice();
+      }
+    })
+  },
+
+  templateNotice() {
+    var that = this;
+    console.log('123')
+    wx.requestSubscribeMessage({
+      tmplIds: ['AnCv2dp1Jy3l2RcgE-0NTiw_IINFTVZuhwL0YDUumZ0'],
+      success(res) {
+        console.log(res)
+      },
+      complete(res) {
         that.setData({
-          visible1: true,
+          visible1: true
         })
       }
     })
   },
-  btnOpen(){
+
+  btnOpen() {
     this.setData({
       visible1: true,
     })
@@ -85,20 +100,20 @@ Page({
       url: '../index/index'
     })
   },
-  getBaseData: function () {
+  getBaseData: function() {
     var that = this;
     wx.request({
-      url: "http://192.168.1.153:8888/small/faults",
-      method:'GET',
-      success: function (res) { //请求成功
-        console.log(res);//在调试器里打印网络请求到的json数据
+      url: "http://192.168.1.107:8888/small/faults",
+      method: 'GET',
+      success: function(res) { //请求成功
+        console.log(res); //在调试器里打印网络请求到的json数据
         that.setData({
           terminals: res.data.data.terminals,
           faults: res.data.data.faults,
           userOpenid: wx.getStorageSync('userOpenid')
         })
       },
-      fail: function (res) { // 请求失败
+      fail: function(res) { // 请求失败
       }
     })
   }

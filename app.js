@@ -14,7 +14,7 @@ App({
       wx.login({
         success: res => {
           wx.request({
-            url: 'http://192.168.1.153:8888/small/getUserInfo',
+            url: 'http://192.168.1.107:8888/small/getUserInfo',
             data: {
               code: res.code
             },
