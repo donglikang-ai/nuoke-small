@@ -92,7 +92,7 @@ Page({
   getBaseData: function() {
     var that = this;
     wx.request({
-      url: "http://192.168.1.107:8888/small/info",
+      url: "http://39.98.204.34:80/small/info",
       method: 'POST',
       data: {
         openid: wx.getStorageSync('userOpenid')

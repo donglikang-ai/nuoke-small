@@ -31,17 +31,17 @@
 
         <wux-cell hover-class="none">
           <wux-field name="name" initialValue="">
-            <wux-input label="报修人" />
+            <wux-input label="报修人" placeholder="请输入姓名" />
           </wux-field>
         </wux-cell>
         <wux-cell hover-class="none">
           <wux-field name="mobile" initialValue="">
-            <wux-input label="联系电话" />
+            <wux-input label="联系电话" controlled type="number" placeholder="请输入联系电话" />
           </wux-field>
         </wux-cell>
         <wux-cell hover-class="none">
           <wux-field name="address" initialValue="">
-            <wux-input label="报修地址" />
+            <wux-input label="报修地址" placeholder="请输入地址" />
           </wux-field>
         </wux-cell>
       </wux-cell-group>
@@ -49,7 +49,7 @@
       <wux-cell-group title="故障描述">
         <wux-cell hover-class="none">
           <wux-field name="faultInfo" initialValue="">
-            <wux-textarea rows="3" />
+            <wux-textarea rows="3" placeholder="请输入详细故障信息" />
           </wux-field>
         </wux-cell>
       </wux-cell-group>

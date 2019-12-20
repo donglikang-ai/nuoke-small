@@ -3,6 +3,8 @@ const app = getApp()
 
 Page({
   data: {
+
+    spinning: true,
     orders:[],
     actions:[
       {type:'default',
@@ -22,6 +24,11 @@ Page({
       that.getOrders();
     }
   },
+  onUnload: function () {
+    wx.reLaunch({
+      url: '../index/index'
+    })
+  },
   faultInfo(e){
    
     wx.navigateTo({
@@ -31,7 +38,7 @@ Page({
   getOrders: function () {
     var that = this;
     wx.request({
-      url: "http://192.168.1.153:8888/small/orders",
+      url: "http://39.98.204.34:80/small/orders",
       method: 'POST',
       data: {
         openid: wx.getStorageSync('userOpenid')
@@ -39,10 +46,14 @@ Page({
       success: function (res) { //请求成功
         console.log(res);//在调试器里打印网络请求到的json数据
         that.setData({
-          orders: res.data.data.orders
+          orders: res.data.data.orders,
+          spinning: false
         })
       },
       fail: function (res) { // 请求失败
+        that.setData({
+          spinning: false
+        })
       }
     })
   }

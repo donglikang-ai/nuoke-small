@@ -24,6 +24,11 @@ Page({
       that.getBaseData();
     }
   },
+  onUnload: function () {
+    wx.reLaunch({
+      url: '../index/index'
+    })
+  },
   setValue(values, key) {
     this.setData({
       [`value${key}`]: values.value,
@@ -62,7 +67,7 @@ Page({
     console.log('Wux Form Submit \n', value)
 
     wx.request({
-      url: 'http://192.168.1.107:8888/order/addSave',
+      url: 'http://39.98.204.34:80/order/addSave',
       method: 'POST',
       data: value,
       header: {
@@ -103,7 +108,7 @@ Page({
   getBaseData: function() {
     var that = this;
     wx.request({
-      url: "http://192.168.1.107:8888/small/faults",
+      url: "http://39.98.204.34:80/small/faults",
       method: 'GET',
       success: function(res) { //请求成功
         console.log(res); //在调试器里打印网络请求到的json数据
