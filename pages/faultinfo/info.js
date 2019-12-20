@@ -43,7 +43,7 @@ Page({
     var that = this;
     console.log("请求----"+that.data.orderid)
     wx.request({
-      url: "http://39.98.204.34:80/small/orderInfo",
+      url: "http://www.roc-saleservice.com/small/orderInfo",
       method: 'post',
       data: {
         id: that.data.orderid

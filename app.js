@@ -14,7 +14,7 @@ App({
       wx.login({
         success: res => {
           wx.request({
-            url: 'http://39.98.204.34:80/small/getUserInfo',
+            url: 'http://www.roc-saleservice.com/small/getUserInfo',
             data: {
               code: res.code
             },

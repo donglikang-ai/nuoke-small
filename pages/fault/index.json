@@ -12,6 +12,7 @@
     "wux-button": "../../dist/button/index",
     "wux-icon": "../../dist/icon/index",
     "wux-picker": "../../dist/picker/index",
-    "wux-popup": "../../dist/popup/index"
+    "wux-popup": "../../dist/popup/index",
+    "wux-toptips": "../../dist/toptips/index"
   }
 }

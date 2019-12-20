@@ -1,5 +1,6 @@
 import {
-  $wuxForm
+  $wuxForm,
+  $wuxToptips
 } from '../../dist/index'
 const app = getApp()
 
@@ -67,7 +68,7 @@ Page({
     console.log('Wux Form Submit \n', value)
 
     wx.request({
-      url: 'http://39.98.204.34:80/order/addSave',
+      url: 'http://www.roc-saleservice.com/order/addSave',
       method: 'POST',
       data: value,
       header: {
@@ -88,8 +89,15 @@ Page({
         console.log(res)
       },
       complete(res) {
-        that.setData({
-          visible1: true
+        $wuxToptips().success({
+          hidden: false,
+          text: '提交成功，我们将尽快工作人员跟进处理',
+          duration: 3000,
+          success() { 
+            wx.navigateTo({
+              url: '../index/index'
+            })
+          },
         })
       }
     })
@@ -108,7 +116,7 @@ Page({
   getBaseData: function() {
     var that = this;
     wx.request({
-      url: "http://39.98.204.34:80/small/faults",
+      url: "http://www.roc-saleservice.com/small/faults",
       method: 'GET',
       success: function(res) { //请求成功
         console.log(res); //在调试器里打印网络请求到的json数据

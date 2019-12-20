@@ -16,22 +16,11 @@ Page({
     swiperList: [{
       id: 0,
       type: 'image',
-      url: 'https://p3.pstatp.com/large/43700001e49d85d3ab52'
-    }, {
-      id: 1,
-      type: 'image',
-      url: 'https://p3.pstatp.com/large/39f600038907bf3b9c96',
-    }, {
-      id: 2,
-      type: 'image',
-      url: 'https://p3.pstatp.com/large/31fa0003ed7228adf421'
+      url: 'http://www.roc-saleservice.com/small/pic'
     }],
-    orderTime: '2019-11-12 18:38:00',
-    orderInfo: '故障设备：BJ001232\r\n故障类型：不制热',
-    actions: [{
-      type: 'default',
-      text: '详细内容'
-    }]
+    orderTime: '',
+    orderInfo: '',
+    actions: []
 
   },
   //事件处理函数
@@ -92,7 +81,7 @@ Page({
   getBaseData: function() {
     var that = this;
     wx.request({
-      url: "http://39.98.204.34:80/small/info",
+      url: "http://www.roc-saleservice.com/small/info",
       method: 'POST',
       data: {
         openid: wx.getStorageSync('userOpenid')

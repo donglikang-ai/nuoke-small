@@ -1,7 +1,7 @@
 <wux-popup closable visible="{{ visible1 }}" title="操作成功" content="提交成功，我们将尽快工作人员跟进处理">
   <view slot="footer" class="popup__button" bindtap="btnClose">OK</view>
 </wux-popup>
-
+<wux-toptips id="wux-toptips" />
 <view class="page">
   <view class="page__hd">
     <view class="page__title">设备报修</view>
