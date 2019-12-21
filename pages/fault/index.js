@@ -59,12 +59,38 @@ Page({
 
     var that = this;
 
+    that.setData({
+      spinning: true
+    })
     const {
       getFieldsValue,
       getFieldValue,
       setFieldsValue
     } = $wuxForm()
     const value = getFieldsValue()
+
+
+    if (value.terminalName == null || value.terminalName == '' ||
+      value.faultName == null || value.faultName == '' ||
+      value.name == null || value.name == '' ||
+      value.mobile == null || value.mobile == '' ||
+      value.address == null || value.address == '' ||
+      value.faultInfo == null || value.faultInfo == '') {
+        
+      that.setData({
+        spinning: false
+      })
+
+      $wuxToptips().warn({
+        hidden: false,
+        text: '表单未填写完整',
+        duration: 3000
+      })
+
+      
+      return;
+    }
+
 
     console.log('Wux Form Submit \n', value)
 
@@ -76,7 +102,25 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        that.setData({
+          spinning: false
+        })
         that.templateNotice();
+      },
+      fail(res) {
+        that.setData({
+          spinning: false
+        })
+        $wuxToptips().warn({
+          hidden: false,
+          text: '提交失败，请稍后重试',
+          duration: 3000,
+          success() {
+            wx.navigateTo({
+              url: '../index/index'
+            })
+          },
+        })
       }
     })
   },
@@ -90,15 +134,8 @@ Page({
         console.log(res)
       },
       complete(res) {
-        $wuxToptips().success({
-          hidden: false,
-          text: '提交成功，我们将尽快工作人员跟进处理',
-          duration: 3000,
-          success() {
-            wx.navigateTo({
-              url: '../index/index'
-            })
-          },
+        wx.navigateTo({
+          url: '../index/index'
         })
       }
     })
