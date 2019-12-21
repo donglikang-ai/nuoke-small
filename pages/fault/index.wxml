@@ -1,3 +1,4 @@
+<wux-spin nested spinning="{{ spinning }}" tip="Loading...">
 <wux-popup closable visible="{{ visible1 }}" title="操作成功" content="提交成功，我们将尽快工作人员跟进处理">
   <view slot="footer" class="popup__button" bindtap="btnClose">OK</view>
 </wux-popup>
@@ -61,3 +62,4 @@
     </wux-form>
   </view>
 </view>
+</wux-spin>

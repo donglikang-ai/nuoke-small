@@ -38,7 +38,7 @@ Page({
   getOrders: function () {
     var that = this;
     wx.request({
-      url: "http://www.roc-saleservice.com/small/orders",
+      url: "https://roc-saleservice.com/small/orders",
       method: 'POST',
       data: {
         openid: wx.getStorageSync('userOpenid')

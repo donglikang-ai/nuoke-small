@@ -7,6 +7,7 @@ const app = getApp()
 
 Page({
   data: {
+    spinning: true,
     swiperCurrent: 0,
     indicatorDots: true,
     autoplay: true,
@@ -16,11 +17,16 @@ Page({
     swiperList: [{
       id: 0,
       type: 'image',
-      url: 'http://www.roc-saleservice.com/small/pic'
+      url: 'https://roc-saleservice.com/small/pic'
     }],
     orderTime: '',
     orderInfo: '',
-    actions: []
+    actions: [
+      {
+        type: 'default',
+        text: '详细内容'
+      }
+    ]
 
   },
   //事件处理函数
@@ -81,7 +87,7 @@ Page({
   getBaseData: function() {
     var that = this;
     wx.request({
-      url: "http://www.roc-saleservice.com/small/info",
+      url: "https://roc-saleservice.com/small/info",
       method: 'POST',
       data: {
         openid: wx.getStorageSync('userOpenid')
@@ -92,10 +98,14 @@ Page({
         that.setData({
           notice: res.data.data.notice,
           ordersNum: res.data.data.orders.length == 0 ? 0 : 1,
-          orders: res.data.data.orders
+          orders: res.data.data.orders,
+          spinning: false
         })
       },
       fail: function(res) { // 请求失败
+        that.setData({
+          spinning: false
+        })
       }
     })
   },

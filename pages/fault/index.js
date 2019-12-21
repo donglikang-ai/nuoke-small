@@ -6,6 +6,7 @@ const app = getApp()
 
 Page({
   data: {
+    spinning: true,
     visible1: false,
     value1: '',
     value2: '',
@@ -25,7 +26,7 @@ Page({
       that.getBaseData();
     }
   },
-  onUnload: function () {
+  onUnload: function() {
     wx.reLaunch({
       url: '../index/index'
     })
@@ -68,7 +69,7 @@ Page({
     console.log('Wux Form Submit \n', value)
 
     wx.request({
-      url: 'http://www.roc-saleservice.com/order/addSave',
+      url: 'https://roc-saleservice.com/order/addSave',
       method: 'POST',
       data: value,
       header: {
@@ -93,7 +94,7 @@ Page({
           hidden: false,
           text: '提交成功，我们将尽快工作人员跟进处理',
           duration: 3000,
-          success() { 
+          success() {
             wx.navigateTo({
               url: '../index/index'
             })
@@ -116,17 +117,21 @@ Page({
   getBaseData: function() {
     var that = this;
     wx.request({
-      url: "http://www.roc-saleservice.com/small/faults",
+      url: "https://roc-saleservice.com/small/faults",
       method: 'GET',
       success: function(res) { //请求成功
         console.log(res); //在调试器里打印网络请求到的json数据
         that.setData({
           terminals: res.data.data.terminals,
           faults: res.data.data.faults,
-          userOpenid: wx.getStorageSync('userOpenid')
+          userOpenid: wx.getStorageSync('userOpenid'),
+          spinning: false
         })
       },
       fail: function(res) { // 请求失败
+        that.setData({
+          spinning: false
+        })
       }
     })
   }

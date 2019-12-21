@@ -13,6 +13,7 @@
     "wux-icon": "../../dist/icon/index",
     "wux-picker": "../../dist/picker/index",
     "wux-popup": "../../dist/popup/index",
-    "wux-toptips": "../../dist/toptips/index"
+    "wux-toptips": "../../dist/toptips/index",
+    "wux-spin": "../../dist/spin/index"
   }
 }

@@ -1,11 +1,11 @@
-
+<wux-spin nested spinning="{{ spinning }}" tip="Loading...">
 <view class="page">
   <view class="page__hd">
     <view class="page__title">报修记录</view>
     <view class="page__desc">欢迎使用报修服务，服务中若存在不合理现象。欢迎与我们沟通</view>
   </view>
   <view class="page__bd">
-    <view class="sub-title">服务已完成，欢迎使用</view>
+    <view class="sub-title">订单跟踪</view>
         <wux-steps direction="vertical">
             <wux-step status="finish" title="完成报修({{createDate}})" content="报修设备:{{terminalName}}\n故障类型:{{faultName}}\n故障描述:{{faultInfo}}"></wux-step>
             <wux-step status="{{finishStatus==2?finish:process}}" title="安排服务({{doDate}})" content="服务人员:{{repairmanName}}\n服务电话:{{repairmanTel}}"></wux-step>
@@ -13,3 +13,4 @@
         </wux-steps>
   </view>
 </view>
+</wux-spin>

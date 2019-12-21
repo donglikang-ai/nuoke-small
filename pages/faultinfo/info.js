@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    spinning: true,
     "terminalName": "",
     "faultName": "",
     "faultInfo": "",
@@ -14,7 +15,7 @@ Page({
     "createDate": "",
     "doDate": "",
     "closeDate": "",
-    "finishStatus":0
+    "finishStatus": 0
   },
 
   /**
@@ -24,7 +25,7 @@ Page({
     var that = this;
     console.log("请求----" + options.id)
     that.setData({
-        "orderid":options.id
+      "orderid": options.id
     })
     if (!wx.getStorageSync('userOpenid') || wx.getStorageSync('userOpenid')) {
       app.getOpenid().then((resArg) => {
@@ -34,16 +35,16 @@ Page({
       that.getOrderInfo();
     }
   },
-  onUnload:function(){
+  onUnload: function() {
     wx.reLaunch({
       url: '../index/index'
     })
   },
   getOrderInfo: function() {
     var that = this;
-    console.log("请求----"+that.data.orderid)
+    console.log("请求----" + that.data.orderid)
     wx.request({
-      url: "http://www.roc-saleservice.com/small/orderInfo",
+      url: "https://roc-saleservice.com/small/orderInfo",
       method: 'post',
       data: {
         id: that.data.orderid
@@ -59,10 +60,14 @@ Page({
           createDate: res.data.data.createDate == null ? '' : res.data.data.createDate,
           doDate: res.data.data.doDate == null ? '' : res.data.data.doDate,
           closeDate: res.data.data.closeDate == null ? '' : res.data.data.closeDate,
-          finishStatus: res.data.data.status 
+          finishStatus: res.data.data.status,
+          spinning: false
         })
       },
       fail: function(res) { // 请求失败
+        that.setData({
+          spinning: false
+        })
       }
     })
   }
