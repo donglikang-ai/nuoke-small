@@ -14,9 +14,10 @@ Page({
     displayValue2: '请选择',
     terminals: [],
     faults: [],
-    userOpenid: ''
+    userOpenid: '',
+    showMask:true
   },
-  onLoad: function() {
+  onLoad: function () {
     var that = this;
     if (!wx.getStorageSync('userOpenid') || wx.getStorageSync('userOpenid')) {
       app.getOpenid().then((resArg) => {
@@ -26,7 +27,7 @@ Page({
       that.getBaseData();
     }
   },
-  onUnload: function() {
+  onUnload: function () {
     wx.reLaunch({
       url: '../index/index'
     })
@@ -55,6 +56,14 @@ Page({
       visible: e.detail.visible
     })
   },
+  maskHidden(e){
+    console.log('123')
+    
+    this.setData({
+      showMask: this.data.showMask?false:true
+    })
+  },
+
   onSubmit() {
 
     var that = this;
@@ -76,7 +85,7 @@ Page({
       value.mobile == null || value.mobile == '' ||
       value.address == null || value.address == '' ||
       value.faultInfo == null || value.faultInfo == '') {
-        
+
       that.setData({
         spinning: false
       })
@@ -87,7 +96,7 @@ Page({
         duration: 3000
       })
 
-      
+
       return;
     }
 
@@ -151,12 +160,12 @@ Page({
       url: '../index/index'
     })
   },
-  getBaseData: function() {
+  getBaseData: function () {
     var that = this;
     wx.request({
       url: "https://roc-saleservice.com/small/faults",
       method: 'GET',
-      success: function(res) { //请求成功
+      success: function (res) { //请求成功
         console.log(res); //在调试器里打印网络请求到的json数据
         that.setData({
           terminals: res.data.data.terminals,
@@ -165,7 +174,7 @@ Page({
           spinning: false
         })
       },
-      fail: function(res) { // 请求失败
+      fail: function (res) { // 请求失败
         that.setData({
           spinning: false
         })

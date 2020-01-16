@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/fault/index",
     "pages/logs/logs",
-    "pages/faultinfo/info"
+    "pages/faultinfo/info",
+    "pages/faultcheck/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

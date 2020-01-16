@@ -1,65 +1,70 @@
 <wux-spin nested spinning="{{ spinning }}" tip="Loading...">
-<wux-popup closable visible="{{ visible1 }}" title="操作成功" content="提交成功，我们将尽快工作人员跟进处理">
-  <view slot="footer" class="popup__button" bindtap="btnClose">OK</view>
-</wux-popup>
-<wux-toptips id="wux-toptips" />
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">设备报修</view>
-    <view class="page__desc">上门服务费用：30元</view>
+  <wux-popup closable visible="{{ visible1 }}" title="操作成功" content="提交成功，我们将尽快工作人员跟进处理">
+    <view slot="footer" class="popup__button" bindtap="btnClose">OK</view>
+  </wux-popup>
+  <wux-toptips id="wux-toptips" />
+  <view class="page">
+    <view class="page__hd">
+      <view class="page__title">设备报修</view>
+      <view class="page__desc">上门服务费用：30元</view>
+    </view>
+    <view class="page__bd">
+      <wux-form id="wux-form" bind:change="onChange">
+
+        <wux-cell-group>
+
+
+
+          <wux-cell class="hidden" hover-class="none">
+            <wux-field class="hidden" name="openid" initialValue="{{userOpenid}}">
+              <wux-input label="报修人" />
+            </wux-field>
+          </wux-cell>
+
+        
+            <wux-field name="terminalName" initialValue="">
+              <wux-popup-select value="{{ value1 }}" bind:visibleChange="maskHidden" options="{{ terminals }}" data-index="1" bind:confirm="onConfirm">
+                <wux-cell title="设备类型" is-link extra="{{ displayValue1 }}"></wux-cell>
+              </wux-popup-select>
+            </wux-field>
+       
+          
+            <wux-field name="faultName" initialValue="">
+              <wux-popup-select value="{{ value2 }}" bind:visibleChange="maskHidden" options="{{ faults }}" data-index="2" bind:confirm="onConfirm" >
+                <wux-cell title="故障类型" is-link extra="{{ displayValue2 }}"></wux-cell>
+              </wux-popup-select>
+            </wux-field>
+        
+          <wux-cell hover-class="none">
+            <wux-field name="name" initialValue="">
+              <wux-input label="报修人" placeholder="请输入姓名" />
+            </wux-field>
+          </wux-cell>
+          <wux-cell hover-class="none">
+            <wux-field name="mobile" initialValue="">
+              <wux-input label="联系电话" controlled type="number" placeholder="请输入联系电话" />
+            </wux-field>
+          </wux-cell>
+          <wux-cell hover-class="none">
+            <wux-field name="address" initialValue="">
+              <wux-input label="报修地址" placeholder="请输入地址" />
+            </wux-field>
+          </wux-cell>
+        </wux-cell-group>
+
+        <wux-cell-group title="故障描述">
+          <wux-cell hover-class="none">
+            <wux-field name="faultInfo" initialValue="">
+              <wux-textarea  wx:if="{{ showMask }}" label="故障描述" rows="3"  placeholder="请输入详细故障信息" />
+            </wux-field>
+          </wux-cell>
+        </wux-cell-group>
+
+        <view class="btn-area">
+          <wux-button bindtap="onSubmit" block type="positive">提交</wux-button>
+          <!-- <button bindtap="onSubmit">提交</button> -->
+        </view>
+      </wux-form>
+    </view>
   </view>
-  <view class="page__bd">
-    <wux-form id="wux-form" bind:change="onChange">
-
-      <wux-cell-group>
-
-        <wux-cell class="hidden" hover-class="none">
-          <wux-field class="hidden" name="openid" initialValue="{{userOpenid}}">
-            <wux-input label="报修人" />
-          </wux-field>
-        </wux-cell>
-
-        <wux-field name="terminalName" initialValue="">
-          <wux-popup-select value="{{ value1 }}" options="{{ terminals }}" data-index="1" bind:confirm="onConfirm" bind:valueChange="onValueChange">
-            <wux-cell title="设备类型" is-link extra="{{ displayValue1 }}"></wux-cell>
-          </wux-popup-select>
-        </wux-field>
-        <wux-field name="faultName" initialValue="">
-          <wux-popup-select value="{{ value2 }}" options="{{ faults }}" data-index="2" bind:confirm="onConfirm" bind:valueChange="onValueChange">
-            <wux-cell title="故障类型" is-link extra="{{ displayValue2 }}"></wux-cell>
-          </wux-popup-select>
-        </wux-field>
-
-        <wux-cell hover-class="none">
-          <wux-field name="name" initialValue="">
-            <wux-input label="报修人" placeholder="请输入姓名" />
-          </wux-field>
-        </wux-cell>
-        <wux-cell hover-class="none">
-          <wux-field name="mobile" initialValue="">
-            <wux-input label="联系电话" controlled type="number" placeholder="请输入联系电话" />
-          </wux-field>
-        </wux-cell>
-        <wux-cell hover-class="none">
-          <wux-field name="address" initialValue="">
-            <wux-input label="报修地址" placeholder="请输入地址" />
-          </wux-field>
-        </wux-cell>
-      </wux-cell-group>
-
-      <wux-cell-group title="故障描述">
-        <wux-cell hover-class="none">
-          <wux-field name="faultInfo" initialValue="">
-            <wux-textarea rows="3" placeholder="请输入详细故障信息" />
-          </wux-field>
-        </wux-cell>
-      </wux-cell-group>
-
-      <view class="btn-area">
-        <wux-button bindtap="onSubmit" block type="positive">提交</wux-button>
-        <!-- <button bindtap="onSubmit">提交</button> -->
-      </view>
-    </wux-form>
-  </view>
-</view>
 </wux-spin>

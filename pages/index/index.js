@@ -55,13 +55,8 @@ Page({
     })
   },
   checkFault: function() {
-    $wuxToast().show({
-      type: 'default',
-      duration: 1500,
-      color: '#fff',
-      icon: 'md-build',
-      text: '功能开发中',
-      success: () => console.log('自定义图标')
+    wx.navigateTo({
+      url: '../faultcheck/index'
     })
   },
   aboutUs: function() {
